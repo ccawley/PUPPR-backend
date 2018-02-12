@@ -1,0 +1,25 @@
+{
+  "name": "puppr-backend",
+  "version": "1.0.0",
+  "description": "express server and database for my q2 Galvanize project; PUPPR",
+  "main": "index.js",
+  "scripts": {
+    "knex": "knex",
+    "test": "npm run dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ccawley/PUPPR-backend.git"
+  },
+  "author": "Curtis Cawley",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ccawley/PUPPR-backend/issues"
+  },
+  "homepage": "https://github.com/ccawley/PUPPR-backend#readme",
+  "dependencies": {
+    "dotenv": "^5.0.0",
+    "knex": "^0.14.3",
+    "pg": "^7.4.1"
+  }
+}
