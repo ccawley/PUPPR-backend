@@ -3,18 +3,14 @@ const app = express()
 const PORT = process.env.PORT || 3000
 const bodyParser = require("body-parser")
 const morgan = require("morgan")
-const model = require("./model")
-// const controller = require("./controller")
+const model = require("./model/index")
+const controller = require("./controller/controller")
 
-app.disable('x-powered-by')
+app.disable("x-powered-by")
 if (process.env.NODE_ENV === "development") app.use(morgan("dev"))
 app.use(bodyParser.json())
 
-app.get('/dogs', (req, res) => {
-  let message = "Woof"
-  console.log(`I am server, ${message}!`)
-  res.send(`You are client! Boo! Heck! ${message}!`)
-})
+app.get("/dogs", controller.dogsController)
 
 app.use((req, res, next) => {
   res.status(404).json({ error: { message: 'Not found' }})
