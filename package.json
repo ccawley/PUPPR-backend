@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "knex": "knex",
-    "start": "nodemon app.js",
-    "test": "npm run dev"
+    "dev": "nodemon app.js",
+    "test": "npm run dev",
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",
@@ -23,9 +24,13 @@
     "cors": "^2.8.4",
     "dotenv": "^5.0.0",
     "express": "^4.16.2",
+    "fs": "0.0.1-security",
     "knex": "^0.14.3",
     "morgan": "^1.9.0",
-    "nodemon": "^1.14.12",
-    "pg": "^7.4.1"
+    "pg": "^7.4.1",
+    "uuid": "^3.2.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.14.12"
   }
 }
