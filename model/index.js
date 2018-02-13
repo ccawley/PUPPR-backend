@@ -6,6 +6,7 @@ function getAll() {
 
 function getDogById(id) {
   return knex('dogs').then(result => {
+    console.log(result)
     let dog = result.find(dog => dog.id === id)
     return dog
   })
