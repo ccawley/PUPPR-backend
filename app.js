@@ -3,12 +3,14 @@ const app = express()
 const PORT = process.env.PORT || 3000
 const bodyParser = require("body-parser")
 const morgan = require("morgan")
+const cors = require("cors")
 const model = require("./model/index")
 const controller = require("./controller/controller")
 
 app.disable("x-powered-by")
 if (process.env.NODE_ENV === "development") app.use(morgan("dev"))
 app.use(bodyParser.json())
+app.use(cors())
 
 app.get("/dogs", controller.dogsController)
 
