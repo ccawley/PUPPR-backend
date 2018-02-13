@@ -1,14 +1,17 @@
-// let uuid = require('uuid/v4');
-// let fs = require('fs');
-// let filePath = './data.json';
-// let dogsInJSON = fs.readFileSync('./data.json', 'utf-8');
-// let dogs = JSON.parse(booksInJSON)
-let knex = require('../db');
+let knex = require('../db')
 
 function getAll() {
-  return knex('dogs');
+  return knex('dogs')
+}
+
+function getDogById(id) {
+  return knex('dogs').then(result => {
+    let dog = result.find(dog => dog.id === id)
+    return dog
+  })
 }
 
 module.exports = {
-  getAll
+  getAll,
+  getDogById
 }
