@@ -4,15 +4,30 @@ function getAll() {
   return knex('dogs')
 }
 
-function getDogById(id) {
+function getDogById(dogId) {
   return knex('dogs').then(result => {
-    console.log(result)
-    let dog = result.find(dog => dog.id === id)
+    let dog = result.find(dog => dog.id === parseInt(dogId))
     return dog
   })
 }
 
+function createDog(name, about_puppr, picture_url, pet_me, location) {
+  return knex('dogs')
+    .insert({
+      // id,
+      // owner_id, //help!!!
+      name,
+      about_puppr,
+      picture_url,
+      pet_me,
+      location,
+      // created_at, help!!!
+      // updated_at, help!!!
+    })
+}
+
 module.exports = {
   getAll,
-  getDogById
+  getDogById,
+  createDog
 }
