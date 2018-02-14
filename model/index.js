@@ -11,19 +11,17 @@ function getDogById(dogId) {
   })
 }
 
-function createDog(name, about_puppr, picture_url, pet_me, location) {
+function createDog(owner_id, name, about_puppr, picture_url, pet_me, location) {
+  console.log(arguments)
   return knex('dogs')
     .insert({
-      // id,
-      // owner_id, //help!!!
+      owner_id,
       name,
       about_puppr,
       picture_url,
       pet_me,
-      location,
-      // created_at, help!!!
-      // updated_at, help!!!
-    })
+      location
+    }).returning('*').then(rows => rows[0])
 }
 
 module.exports = {
