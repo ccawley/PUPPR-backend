@@ -12,7 +12,6 @@ function getDogById(dogId) {
 }
 
 function createDog(owner_id, name, about_puppr, picture_url, pet_me, location) {
-  console.log(arguments)
   return knex('dogs')
     .insert({
       owner_id,
