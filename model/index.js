@@ -11,6 +11,15 @@ function getDogById(dogId) {
   })
 }
 
+function createOwner(name, user_name, password) {
+  return knex('owners')
+    .insert({
+      name,
+      user_name,
+      password
+    }).returning('*').then(rows => rows[0])
+}
+
 function createDog(owner_id, name, about_puppr, picture_url, pet_me, location) {
   return knex('dogs')
     .insert({
@@ -26,5 +35,6 @@ function createDog(owner_id, name, about_puppr, picture_url, pet_me, location) {
 module.exports = {
   getAll,
   getDogById,
+  createOwner,
   createDog
 }
