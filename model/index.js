@@ -32,9 +32,17 @@ function createDog(owner_id, name, about_puppr, picture_url, pet_me, location) {
     }).returning('*').then(rows => rows[0])
 }
 
+function deleteDog(id) {
+  return knex('dogs')
+    .where('id', parseInt(id))
+    .del()
+    .returning('*')
+}
+
 module.exports = {
   getAll,
   getDogById,
   createOwner,
-  createDog
+  createDog,
+  deleteDog
 }

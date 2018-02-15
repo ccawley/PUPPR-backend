@@ -10,10 +10,11 @@ let dogsController = (req, res, next) => {
 let dogIdController = (req, res, next) => {
   let dogId = req.params.id
 
-  if (!dog) return next({ error: 404, message: `Could not find dog with id ${dogId}.` })
-
   model.getDogById(dogId)
     .then(dog => {
+
+      if (!dog) return next({ error: 404, message: `Could not find dog with id ${dogId}.` })
+
       return res.status(200).json(dog)
   })
 }
@@ -40,9 +41,22 @@ let createDogController = (req, res, next) => {
    })
 }
 
+let deleteDogController = (req, res, next) => {
+  let dogId = req.params.id
+
+  model.deleteDog(dogId)
+    .then(dog => {
+
+      if (!dog) return next({ error: 404, message: `Could not find dog with id ${dogId}.` })
+
+      return res.status(204).json(dog)
+  })
+}
+
 module.exports = {
   dogsController,
   dogIdController,
   createOwnerController,
-  createDogController
+  createDogController,
+  deleteDogController
 }
