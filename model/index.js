@@ -20,6 +20,15 @@ function createOwner(name, user_name, password) {
     }).returning('*').then(rows => rows[0])
 }
 
+function createPetter(name, user_name, password) {
+  return knex('petters')
+    .insert({
+      name,
+      user_name,
+      password
+    }).returning('*').then(rows => rows[0])
+}
+
 function createDog(owner_id, name, about_puppr, picture_url, pet_me, location) {
   return knex('dogs')
     .insert({
@@ -43,6 +52,7 @@ module.exports = {
   getAll,
   getDogById,
   createOwner,
+  createPetter,
   createDog,
   deleteDog
 }

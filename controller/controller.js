@@ -30,6 +30,17 @@ let createOwnerController = (req, res, next) => {
     })
 }
 
+let createPetterController = (req, res, next) => {
+  let { name, user_name, password } = req.body
+
+  if ( !name || !user_name || !password ) return next({ error: 400, message: `Fields name, user_name and password are required.` })
+
+  model.createOwner(name, user_name, password)
+    .then(owner => {
+      return res.status(201).json(owner)
+    })
+}
+
 let createDogController = (req, res, next) => {
   let { owner_id, name, about_puppr, picture_url, pet_me, location } = req.body
 
@@ -58,5 +69,6 @@ module.exports = {
   dogIdController,
   createOwnerController,
   createDogController,
+  createPetterController,
   deleteDogController
 }

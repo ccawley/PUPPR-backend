@@ -16,6 +16,7 @@ app.get("/dogs", controller.dogsController)
 app.get("/dogs/:id", controller.dogIdController)
 app.post("/dogs", controller.createDogController)
 app.post("/owners", controller.createOwnerController)
+app.post("/petters", controller.createPetterController)
 app.delete("/dogs/:id", controller.deleteDogController)
 
 app.use((req, res, next) => {
