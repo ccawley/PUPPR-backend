@@ -19,6 +19,17 @@ let dogIdController = (req, res, next) => {
   })
 }
 
+let createDogController = (req, res, next) => {
+  let { owner_id, name, about_puppr, picture_url, pet_me, location } = req.body
+
+  if (!owner_id || !name || !about_puppr || !picture_url || !pet_me || !location) return next({ error: 400, message: `Fields owner_id, name, about_puppr, picture_url, pet_me and location are required.` })
+
+  model.createDog(owner_id, name, about_puppr, picture_url, pet_me, location)
+   .then(dog => {
+     return res.status(201).json(dog)
+   })
+}
+
 let createOwnerController = (req, res, next) => {
   let { name, user_name, password } = req.body
 
@@ -41,15 +52,15 @@ let createPetterController = (req, res, next) => {
     })
 }
 
-let createDogController = (req, res, next) => {
-  let { owner_id, name, about_puppr, picture_url, pet_me, location } = req.body
+let createDogsPettersController = (req, res, next) => {
+  let { petter_id, dog_id, good_boi } = req.body
 
-  if (!owner_id || !name || !about_puppr || !picture_url || !pet_me || !location) return next({ error: 400, message: `Fields owner_id, name, about_puppr, picture_url, pet_me and location are required.` })
+  if ( !petter_id || !dog_id || !good_boi ) return next({ error: 400, message: `Fields petter_id, dog_id and good_boi are required.` })
 
-  model.createDog(owner_id, name, about_puppr, picture_url, pet_me, location)
-   .then(dog => {
-     return res.status(201).json(dog)
-   })
+  model.createDogsPetters(petter_id, dog_id, good_boi)
+    .then(interaction => {
+      return res.status(201).json(interaction)
+    })
 }
 
 let deleteDogController = (req, res, next) => {
@@ -67,8 +78,9 @@ let deleteDogController = (req, res, next) => {
 module.exports = {
   dogsController,
   dogIdController,
-  createOwnerController,
   createDogController,
+  createOwnerController,
   createPetterController,
+  createDogsPettersController,
   deleteDogController
 }
