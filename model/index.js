@@ -50,9 +50,23 @@ function createDogsPetters(petter_id, dog_id, good_boi) {
     }).returning('*').then(rows => rows[0])
 }
 
-function deleteDog(id) {
+function deleteDog(dogId) {
   return knex('dogs')
-    .where('id', parseInt(id))
+    .where('id', parseInt(dogId))
+    .del()
+    .returning('*')
+}
+
+function deleteOwner(ownerId) {
+  return knex('owners')
+    .where('id', parseInt(ownerId))
+    .del()
+    .returning('*')
+}
+
+function deletePetter(petterId) {
+  return knex('petters')
+    .where('id', parseInt(petterId))
     .del()
     .returning('*')
 }
@@ -64,5 +78,7 @@ module.exports = {
   createOwner,
   createPetter,
   createDogsPetters,
-  deleteDog
+  deleteDog,
+  deleteOwner,
+  deletePetter
 }

@@ -46,9 +46,9 @@ let createPetterController = (req, res, next) => {
 
   if ( !name || !user_name || !password ) return next({ error: 400, message: `Fields name, user_name and password are required.` })
 
-  model.createOwner(name, user_name, password)
-    .then(owner => {
-      return res.status(201).json(owner)
+  model.createPetter(name, user_name, password)
+    .then(petter => {
+      return res.status(201).json(petter)
     })
 }
 
@@ -68,11 +68,32 @@ let deleteDogController = (req, res, next) => {
 
   model.deleteDog(dogId)
     .then(dog => {
-
       if (!dog) return next({ error: 404, message: `Could not find dog with id ${dogId}.` })
 
       return res.status(204).json(dog)
   })
+}
+
+let deleteOwnerController = (req, res, next) => {
+  let ownerId = req.params.id
+
+  model.deleteOwner(ownerId)
+    .then(owner => {
+      if (!owner) return next({ error: 404, message: `Could not find owner with id ${ownerId}.` })
+
+      return res.status(204).json(owner)
+    })
+}
+
+let deletePetterController = (req, res, next) => {
+  let petterId = req.params.id
+
+  model.deletePetter(petterId)
+    .then(petter => {
+      if (!petter) return next({ error: 404, message: `Could not find petter with id ${petterId}.` })
+
+      return res.status(204).json(petter)
+    })
 }
 
 module.exports = {
@@ -82,5 +103,7 @@ module.exports = {
   createOwnerController,
   createPetterController,
   createDogsPettersController,
-  deleteDogController
+  deleteDogController,
+  deleteOwnerController,
+  deletePetterController
 }
